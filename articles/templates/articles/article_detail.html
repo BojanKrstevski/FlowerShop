@@ -1,0 +1,285 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+
+<div class="container-lg">
+    <div class="row justify-content-between mt-5">
+        <!--left square-->
+        <div class="col-lg-6 mt-5">
+            <h6>DELIVERY DATE*</h6>
+            <input type="date" class="container-fluid" id="delivery-date" name="delivery-date">
+            <div class="container-md-fluid mt-5">
+                 <!--Additives-->
+                <div class="row g-2">
+                    <div class="col-md-2">
+                        <img class="img-fluid" src="/media/image.jpg" alt="card-img">
+                    </div>
+                    <div class="col-md-2 border-top">
+                        <small>Signature Vase</small>
+                        <br>
+                        <small>+$12.00</small>
+                    </div>
+                     <div class="col-md-2">
+                        <img class="img-fluid" src="/media/image.jpg" alt="card-img">
+                    </div>
+                    <div class="col-md-2 border-top">
+                        <small>Signature Vase</small>
+                        <br>
+                        <small>+$12.00</small>
+                    </div>
+                    <div class="col-md-2">
+                        <img class="img-fluid" src="/media/image.jpg" alt="card-img">
+                    </div>
+                    <div class="col-md-2 border-top">
+                        <small>Signature Vase</small>
+                        <br>
+                        <small>+$12.00</small>
+                    </div>
+                </div>
+                <!--Packages-->
+                <div class="row text-center mt-5 packages">
+                       <div class="col-sm-4 package-choice">
+                        <div class="card rounded-0">
+                          <div class="card-body">
+                            <h5 class="card-title">${{article.price}}</h5>
+                              <h6 class="card-title">ORIGINAL</h6>
+                            <small class="card-text">16 Tulip Stems</small>
+                              <small class="card-text">A Classic-Sized Bouqet</small>
+                          </div>
+                        </div>
+                      </div>
+                     <div class="col-sm-4 package-choice" >
+                        <div class="card rounded-0">
+                          <div class="card-body">
+                            <h5 class="card-title">${{article.price|add:10}}</h5>
+                              <h6 class="card-title">DELUXE</h6>
+                            <small class="card-text">32 Tulip Stems</small>
+                              <small class="card-text">Double the blooms</small>
+                          </div>
+                        </div>
+                      </div>
+                     <div class="col-sm-4 package-choice onclick">
+                        <div class="card rounded-0">
+                          <div class="card-body">
+                            <h5 class="card-title">${{article.price|add:15}}</h5>
+                              <h6 class="card-title">GRAND</h6>
+                            <small class="card-text">48 Tulip Stems</small>
+                              <small class="card-text">Triple the blooms</small>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-success container-fluid rounded-0 mt-5 fw-bold" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                  ORDER NOW
+                </button>
+            </div>
+        </div>
+
+        <!-- right square -->
+        <div class="col-lg-6 text-center ">
+            <div class="row justify-content-end">
+                <div class="col-lg-1">
+                    <h2 class="fw-bold mt-5 p-0" id="article-price">${{article.price}}</h2>
+                </div>
+                <div class="col-lg-9">
+                    <h4 class="text-uppercase mb-3" >{{article.title}}</h4>
+                    <img class="img-fluid imgs" src="{{article.thumb.url}}" alt="article-thumbnail">
+                    <div class="detail-body text-wrap">
+                        <p class="mt-4">{{article.body}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop"  data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" onload="yesnoCheck()">
+              <div class="row">
+            <div class="col-md-12 order-md-1">
+          <h4 class="mb-3">Billing address</h4>
+          <form class="needs-validation" novalidate>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="firstName">First name</label>
+                <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+                <div class="invalid-feedback">
+                  Valid first name is required.
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="lastName">Last name</label>
+                <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+                <div class="invalid-feedback">
+                  Valid last name is required.
+                </div>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="email">Email</label>
+              <input type="email" required class="form-control" id="email" placeholder="you@example.com">
+              <div class="invalid-feedback">
+                Please enter a valid email address for shipping updates.
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="address">Address</label>
+              <input type="text" class="form-control" id="address" placeholder="1234 Main St" required>
+              <div class="invalid-feedback">
+                Please enter your shipping address.
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="address2">Address 2 <span class="text-muted">(Optional)</span></label>
+              <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
+            </div>
+
+            <div class="row">
+              <div class="col-md-5 mb-3">
+                <label for="country">Country</label>
+                <select class="custom-select d-block w-100" id="country" required>
+                  <option value="">Choose...</option>
+                  <option>United States</option>
+                </select>
+                <div class="invalid-feedback">
+                  Please select a valid country.
+                </div>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="state">State</label>
+                <select class="custom-select d-block w-100" id="state" required>
+                  <option value="">Choose...</option>
+                  <option>California</option>
+                </select>
+                <div class="invalid-feedback">
+                  Please provide a valid state.
+                </div>
+              </div>
+              <div class="col-md-3 mb-3">
+                <label for="zip">Zip</label>
+                <input type="text" class="form-control" id="zip" placeholder="" required>
+                <div class="invalid-feedback">
+                  Zip code required.
+                </div>
+              </div>
+            </div>
+            <hr class="mb-4">
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="same-address">
+              <label class="custom-control-label" for="same-address">Shipping address is the same as my billing address</label>
+            </div>
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="save-info">
+              <label class="custom-control-label" for="save-info">Save this information for next time</label>
+            </div>
+            <hr class="mb-4">
+
+            <h4 class="mb-3">Payment</h4>
+
+            <div class="d-block my-3">
+              <div class="custom-control custom-radio" onclick="yesnoCheck()">
+                <input id="credit"  name="paymentMethod" type="radio" class="custom-control-input credit-cards"  checked required>
+                <label class="custom-control-label"  for="credit">Credit card</label>
+              </div>
+              <div class="custom-control custom-radio" onclick="yesnoCheck()">
+                <input id="debit" name="paymentMethod" type="radio" class="custom-control-input credit-cards" required>
+                <label class="custom-control-label" for="debit">Debit card</label>
+              </div>
+              <div class="custom-control custom-radio" onclick="yesnoCheck()">
+                <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input credit-cards" required>
+                <label class="custom-control-label" for="paypal">Paypal</label>
+              </div>
+                <div class="custom-control custom-radio" onclick="yesnoCheck()">
+                <input id="cash" name="paymentMethod" type="radio" class="custom-control-input"  required>
+                <label class="custom-control-label" for="cash">Cash</label>
+              </div>
+            </div>
+
+          <div id="card-info">
+              <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="cc-name">Name on card</label>
+            <input type="text" class="form-control card-info" id="cc-name" placeholder="" required>
+            <small class="text-muted">Full name as displayed on card</small>
+            <div class="invalid-feedback">
+              Name on card is required
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="cc-number">Credit card number</label>
+            <input type="text" class="form-control card-info" id="cc-number" placeholder="" required>
+            <div class="invalid-feedback">
+              Credit card number is required
+            </div>
+          </div>
+        </div>
+              <div class="row " >
+          <div class="col-md-3 mb-3">
+            <label for="cc-expiration">Expiration</label>
+            <input type="text" class="form-control card-info" id="cc-expiration" placeholder="" required>
+            <div class="invalid-feedback">
+              Expiration date required
+            </div>
+          </div>
+          <div class="col-md-3 mb-3">
+            <label for="cc-expiration">CVV</label>
+            <input type="text" class="form-control card-info" id="cc-cvv" placeholder="" required>
+            <div class="invalid-feedback">
+              Security code required
+            </div>
+          </div>
+        </div>
+          </div>
+
+            <hr class="mb-4">
+              <div class="container-fluid">
+                  <div class="row">
+                      <button class="btn btn-primary btn-lg btn-block mb-3 rounded-0 fw-bold" type="submit">PLACE ORDER</button>
+                      <button type="button" class="btn btn-secondary mb-1 rounded-0 fw-bold" data-bs-dismiss="modal">CLOSE</button>
+                  </div>
+              </div>
+
+
+          </form>
+        </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+</div>
+<script>
+     function yesnoCheck() {
+         let creditCards = document.getElementsByClassName("card-info");
+
+         if (document.getElementById('cash').checked) {
+
+             for (let i =0; i< creditCards.length; i++){
+                 creditCards[i].removeAttribute("required");
+                 console.log(creditCards[i])
+             }
+             document.getElementById('card-info').style.display = 'none';
+
+         } else {
+             document.getElementById('card-info').style.display = 'block';
+              for (let i =0; i< creditCards.length; i++){
+                 creditCards[i].removeAttribute("required");
+                 console.log(creditCards[i])
+             }
+             creditCards[i].required="true"
+         }
+     }
+
+</script>
+{% endblock%}

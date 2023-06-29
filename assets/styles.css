@@ -1,0 +1,42 @@
+
+.space{
+    height: 50px;
+    max-width: 100%;
+    background-color: #FD9E9E;
+}
+
+.navbar{
+    background-color: #D9D9D9;
+
+}
+#meadows{
+    background-color: #D9D9D9;
+    padding: 15px;
+}
+#trending{
+    width: 110px;
+}
+
+#slider-flower{
+    scale: 80%;
+}
+.text-height{
+    min-height: 120px;
+}
+
+.site-form{
+
+}
+.site-form input, .site-form textarea{
+    display: block;
+}
+
+#birthday-slider{
+    background-color: #efebe7 !important;
+}
+
+.detail-body{
+    height: 150px;
+    word-wrap: break-word;
+}
+

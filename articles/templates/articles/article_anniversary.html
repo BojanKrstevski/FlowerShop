@@ -1,0 +1,26 @@
+{% extends 'base_layout.html' %}
+{% block content %}
+<section class="products" id="products">
+  <h1 class="ms-5">Anniversary</h1>
+  <div class="container-lg">
+    <!-- row -->
+      <div class="row justify-content-between align-items-center">
+        <!-- cards -->
+          {% for article in articles %}
+             <div class="col-3" type="{{article.author.username}}" >
+                 <div class="card" style="width: 18rem;">
+                     <img src="{{article.thumb.url}}" class="card-img-top" alt="...">
+                     <div class="card-body text-center">
+                         <h5 class="card-title">{{article.title}}</h5>
+                         <p class="card-text text-height">{{article.body}}</p>
+                         <a href="{% url 'articles:detail' slug=article.slug %}" class="btn btn-primary">BUY FLOWER</a>
+                     </div>
+                 </div>
+            </div>
+          {% endfor %}
+        <!-- cards end -->
+      </div>
+    <!-- row end -->
+  </div>
+</section>
+{% endblock %}

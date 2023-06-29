@@ -1,0 +1,42 @@
+{% extends 'base_layout.html' %}
+{% block content %}
+<section class="birthday-slider">
+     <div class="container-fluid mt-4" >
+         <div class="row justify-content-between" id="birthday-slider">
+             <div class="col-6 text-start ms-4">
+                 <h3>Happy Birthday Flowers</h3>
+                 <p>---</p>
+                 <p>Celebrate family, friends, and colleagues, with the best birthday flowers online!
+                 Order bright and colorful birthday flowers.</p>
+                 <a href="" class="btn btn-dark">Lorem ipsum lorem ipsum lorem</a>
+             </div>
+             <div class="col-5">
+                 <img src="/media/summer/birthday-slider.png" alt="birthday-slider" class="img-fluid m-0">
+             </div>
+         </div>
+     </div>
+</section>
+<section class="products" id="products">
+  <h1 class="ms-5">Birthday</h1>
+  <div class="container-lg">
+    <!-- row -->
+      <div class="row justify-content-between align-items-center">
+        <!-- cards -->
+          {% for article in articles %}
+             <div class="col-3" type="{{article.author.username}}" >
+                 <div class="card" style="width: 18rem;">
+                     <img src="{{article.thumb.url}}" class="card-img-top" alt="...">
+                     <div class="card-body text-center">
+                         <h5 class="card-title">{{article.title}}</h5>
+                         <p class="card-text text-height">{{article.body}}</p>
+                         <a href="{% url 'articles:detail' slug=article.slug %}" class="btn btn-primary">BUY FLOWER</a>
+                     </div>
+                 </div>
+            </div>
+          {% endfor %}
+        <!-- cards end -->
+      </div>
+    <!-- row end -->
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'base_layout.html'%}
+
+{% block content %}
+<div class="create-article">
+    <h2 class="text-center">Sell your flowers</h2>
+
+    <div class="container-lg">
+        <div class="row">
+            <div class="col-md-5">
+                <form action="{% url 'articles:create' %}" method="post" class="site-form" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{form}}
+                    <input type="submit" value="SELL" class="btn btn-success">
+                </form>
+            </div>
+            <div class="col-md-5"></div>
+        </div>
+    </div>
+
+
+</div>
+{% endblock %}

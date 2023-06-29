@@ -1,0 +1,56 @@
+{% extends 'base_layout.html' %}
+{% block content %}
+<section class="slider">
+      <h1 class="display-6 text-center mt-3">Online flower delivery</h1>
+      <div class="container-fluid p-0 m-0 ">
+        <div class="row border align-items-center">
+          <div class="col-lg-5 me-5">
+            <img src="/media/slider-flower.jpeg" id="slider-flower" class="img-fluid" alt="slider-flower">
+          </div>
+          <div class="col-lg-5 ms-5" >
+            <div class="row justify-content-between border" id="meadows">
+              <p class="col-2 m-0 p-0">Bestsellers</p>
+              <h6 class=" m-0 p-0" id="trending">Trending Now</h6>
+              <h1 class="display-5">Magic from the Meadows</h1>
+              <h4>Exotic flowers for your special ones</h4>
+            </div>
+
+              <!-- button -->
+              <div class="row justify-content-center mt-5">
+                <a href="#products" class="btn btn-dark rounded-0 col-4">SHOP NOW</a>
+              </div>
+
+            </div>
+        </div>
+      </div>
+</section>
+
+    <!-- Products -->
+<section class="products" id="products">
+  <h1 class="ms-5">POPULAR IN SUMMER</h1>
+  <div class="container-lg">
+    <!-- row -->
+      <div class="row justify-content-between align-items-center">
+        <!-- cards -->
+          {% for article in articles %}
+            {% if article.author.username == 'bojan' %}
+
+             <div class="col-3" type="{{article.author.username}}" >
+                 <div class="card" style="width: 18rem;">
+                     <img src="{{article.thumb.url}}" class="card-img-top" alt="...">
+                     <div class="card-body text-center">
+                         <h5 class="card-title">{{article.title}}</h5>
+                         <p class="card-text text-height">{{article.body}}</p>
+                         <a href="{% url 'articles:detail' slug=article.slug %}" class="btn btn-primary">BUY FLOWER</a>
+                     </div>
+                 </div>
+            </div>
+            {% endif %}
+          {% endfor %}
+        <!-- cards end -->
+      </div>
+    <!-- row end -->
+  </div>
+</section>
+
+{% endblock %}
