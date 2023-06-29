@@ -1,6 +1,9 @@
 
 from django.contrib import admin
+from django.template.defaulttags import url
 from django.urls import path, include
+from django.views.static import serve
+
 from . import views
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf.urls.static import static
@@ -14,6 +17,8 @@ urlpatterns = [
     path('articles/', include('articles.urls', namespace='articles')),
     path('about/', views.about),
     path('', views.home, name="home"),
+    url(r'^media/(?P<path>.*)$', serve,{'document_root':       settings.MEDIA_ROOT}),
+    url(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
